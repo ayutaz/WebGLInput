@@ -1,26 +1,21 @@
-# WebGLInput
+# forked WebGLInput
 
-IME for Unity WebGL ( Support TextMesh Pro from Unity2018.2 )
-
-support “copy and paste”
-
-support "tab" and "shift+tab" change focus to other InputField
-
-support mobile. (Experiment)
-
-# DEMO
-https://unityroom.com/games/webglinput
+WebGLInputからの変更点
+- input領域はデフォルトで非表示
+- input領域は画面上部に存在はするが隠している
+  - 選択時にinput領域が隠れるとUnityのViewサイズが変わるため
+- 主なコミット、PR
+  - https://github.com/tetsujp84/WebGLInput/pull/1/files
 
 # How to use
-1.download [WebGLSupport.unitypackage](https://github.com/kou-yeung/WebGLInput/releases) and import to project
+クローン後、WebGLInput/Assets/WebGLSupport/をコピーしてプロジェクトに追加してください
 
-2.add "WebGLInput" Component to InputField GameObject
+# WebGLInputの仕組みについて
+1. InputFieldの入力を検知すると、WebGLInputのプラグインを通してブラウザのinput要素を生成する
+    1. htmlファイルにinput要素がUnityのView（unity-container）とは独立して動的に追加される
+1. 以降はinputの内容が変更されるとUnityに変更内容を通知する
 
-3.build and run!!
+# UnityのViewサイズ変更について
+input要素の位置がキーボードにより隠れてしまうとView全体を上に移動するようになっている。そのためinput要素が生成される位置を常にトップとすることでこの問題を回避した。
 
-no need to setting anything.
-
-# insert \t use tab key instead of changing focus
-Add "WEBGLINPUT_TAB" to Scripting Define Symbols.
-
-and check "Enable Tab Text" at WebGLInput. 
+InputFieldが画面下部にあり、入力中の文字が視認できない場合はUnity側でInputFieldと連動した表示欄を作っておくか、WebGLInput.jslibを改造して位置やサイズを個別で調整すること。
