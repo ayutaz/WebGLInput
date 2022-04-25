@@ -35,7 +35,13 @@ var WebGLInput = {
         input.style.position = "absolute";
 
 		if(isMobile) {
-			input.style.bottom = 1 + "vh";
+			// inputの領域を非表示
+			// 入力状態はゲーム側で担保する
+			input.style.transform = "scale(0)";
+
+			// NOTE:常に画面上に存在させる
+			// input領域を表示したければここでデザインを調整する
+			input.style.top = 0 + "vh";
 			input.style.left = 5 + "vw";
 			input.style.width = 90 + "vw";
 			input.style.height = (isMultiLine? 18 : 10) + "vh";
