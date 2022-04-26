@@ -19,3 +19,5 @@ WebGLInputからの変更点
 input要素の位置がキーボードにより隠れてしまうとView全体を上に移動するようになっている。そのためinput要素が生成される位置を常にトップとすることでこの問題を回避した。
 
 InputFieldが画面下部にあり、入力中の文字が視認できない場合はUnity側でInputFieldと連動した表示欄を作っておくか、WebGLInput.jslibを改造して位置やサイズを個別で調整すること。
+
+index.htmlのconfig.devicePixelRatio = 1;がコメントアウトされていること。これが有効になっているとAndroidでズームされてしまい、Viewサイズが崩れる。
