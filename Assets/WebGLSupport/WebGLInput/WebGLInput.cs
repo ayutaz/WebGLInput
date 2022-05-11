@@ -124,6 +124,8 @@ namespace WebGLSupport
         internal int id = -1;
         public IInputField input;
         bool blurBlock = false;
+        public bool forceEnable = false;
+        bool IsMobileEnable => Application.isMobilePlatform || forceEnable; 
 
         [TooltipAttribute("show input element on canvas. this will make you select text by drag.")]
         public bool showHtmlElement = false;
@@ -145,7 +147,7 @@ namespace WebGLSupport
             enabled = false;
 #endif
             // モバイルの入力対応
-            if (Application.isMobilePlatform)
+            if (IsMobileEnable)
             {
                 gameObject.AddComponent<WebGLInputMobile>();
             }
@@ -159,7 +161,7 @@ namespace WebGLSupport
         {
             var rect = GetScreenCoordinates(input.RectTransform());
             // モバイルの場合、強制表示する
-            if (showHtmlElement || Application.isMobilePlatform)
+            if (showHtmlElement || IsMobileEnable)
             {
                 var x = (int)(rect.x);
                 var y = (int)(Screen.height - (rect.y + rect.height));
@@ -186,8 +188,8 @@ namespace WebGLSupport
             var fontSize = Mathf.Max(14, input.fontSize); // limit font size : 14 !!
 
             // モバイルの場合、強制表示する
-            var isHidden = !(showHtmlElement || Application.isMobilePlatform);
-            id = WebGLInputPlugin.WebGLInputCreate(WebGLInput.CanvasId, rect.x, rect.y, rect.width, rect.height, fontSize, input.text, input.placeholder, input.lineType != LineType.SingleLine, isPassword, isHidden, Application.isMobilePlatform);
+            var isHidden = !(showHtmlElement || IsMobileEnable);
+            id = WebGLInputPlugin.WebGLInputCreate(WebGLInput.CanvasId, rect.x, rect.y, rect.width, rect.height, fontSize, input.text, input.placeholder, input.lineType != LineType.SingleLine, isPassword, isHidden, IsMobileEnable);
 
             instances[id] = this;
             WebGLInputPlugin.WebGLInputEnterSubmit(id, input.lineType != LineType.MultiLineNewline);
@@ -351,7 +353,7 @@ namespace WebGLSupport
             // 未登録の場合、選択する
             if (!instances.ContainsKey(id))
             {
-                if (Application.isMobilePlatform)
+                if (IsMobileEnable)
                 {
                     return;
                 } else
@@ -361,7 +363,7 @@ namespace WebGLSupport
             }
             else if (!WebGLInputPlugin.WebGLInputIsFocus(id))
             {
-                if (Application.isMobilePlatform)
+                if (IsMobileEnable)
                 {
                     //input.DeactivateInputField();
                     return;
@@ -420,7 +422,7 @@ namespace WebGLSupport
 
         public void CheckOutFocus()
         {
-            if (!Application.isMobilePlatform) return;
+            if (!IsMobileEnable) return;
             if (!instances.ContainsKey(id)) return;
             var current = EventSystem.current.currentSelectedGameObject;
             if (current != null) return;
