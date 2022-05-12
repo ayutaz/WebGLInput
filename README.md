@@ -4,8 +4,10 @@ WebGLInputからの変更点
 - input領域はデフォルトで非表示
 - input領域は画面上部に存在はするが隠している
   - 選択時にinput領域が隠れるとUnityのViewサイズが変わるため
+- 入力のフォーカスを外れた際にInputFieldの入力もクリアする
 - 主なコミット、PR
   - https://github.com/tetsujp84/WebGLInput/pull/1/files
+  - https://github.com/tetsujp84/WebGLInput/pull/3
 
 # How to use
 クローン後、WebGLInput/Assets/WebGLSupport/をコピーしてプロジェクトに追加してください
