@@ -95,6 +95,7 @@ namespace WebGLSupport
 
         public void DeactivateInputField()
         {
+            input.text = string.Empty;
             input.DeactivateInputField();
         }
 
