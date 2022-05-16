@@ -125,7 +125,9 @@ namespace WebGLSupport
         public IInputField input;
         bool blurBlock = false;
         public bool forceEnable = false;
-        bool IsMobileEnable => Application.isMobilePlatform || forceEnable; 
+        bool IsMobileEnable => Application.isMobilePlatform || forceEnable;
+
+        public bool isClearEndEdit;
 
         [TooltipAttribute("show input element on canvas. this will make you select text by drag.")]
         public bool showHtmlElement = false;
@@ -259,7 +261,7 @@ namespace WebGLSupport
             if (!instances.ContainsKey(id)) return;
 
             WebGLInputPlugin.WebGLInputDelete(id);
-            input.DeactivateInputField();
+            input.DeactivateInputField(isClearEndEdit);
             instances.Remove(id);
             id = -1;    // reset id to -1;
             WebGLWindow.OnBlurEvent -= OnWindowBlur;
