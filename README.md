@@ -2,13 +2,10 @@
 
 WebGLInputからの変更点
 - input領域はデフォルトで非表示
-- input領域は画面上部に存在はするが隠している
+- input領域は画面外上部に存在はするが隠している
   - 選択時にinput領域が隠れるとUnityのViewサイズが変わるため
 - モバイルの判定にiPad向けも含める
 - 入力のフォーカスを外れた際にInputFieldの入力をクリアできるようにした
-- 主なコミット、PR
-  - https://github.com/tetsujp84/WebGLInput/pull/1/files
-  - https://github.com/tetsujp84/WebGLInput/pull/3
 
 # How to use
 クローン後、WebGLInput/Assets/WebGLSupport/をコピーしてプロジェクトに追加してください
@@ -33,6 +30,7 @@ https://github.com/tetsujp84/WebGLInput/blob/master/Assets/WebGLSupport/WebGLInp
 ## 入力のフォーカスを外れた際にInputFieldの入力もクリアする
 InputField内に直前まで入力していた文字が残ってしまうため、入力完了時に消すフラグを追加した。
 この方法以外にもInputFieldのonEndEditで明示的に消してもよい。
+https://github.com/tetsujp84/WebGLInput/blob/master/Assets/WebGLSupport/WebGLInput/Wrapper/WrappedInputField.cs#L98
 
 ## InputFieldのonEndEditについて
 Unity2020でのonEndEditは確定時以外にもキーボードからフォーカスを外した際に呼ばれるようになっている。
