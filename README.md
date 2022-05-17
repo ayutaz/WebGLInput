@@ -8,7 +8,7 @@ WebGLInputからの変更点
 - 入力のフォーカスを外れた際にInputFieldの入力をクリアできるようにした
 
 # How to use
-クローン後、WebGLInput/Assets/WebGLSupport/をコピーしてプロジェクトに追加してください
+WebGLInput/Assets/WebGLSupport/をコピーしてプロジェクトに追加してください
 
 # WebGLInputの仕組みについて
 1. InputFieldの入力を検知すると、WebGLInputのプラグインを通してブラウザのinput要素を生成する
