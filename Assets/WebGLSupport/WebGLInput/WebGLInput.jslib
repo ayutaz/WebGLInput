@@ -35,12 +35,13 @@ var WebGLInput = {
         input.style.position = "absolute";
 
 		if(isMobile) {
-			// inputの領域を非表示
-			// 入力状態はゲーム側で担保する
+			// NOTE:
+			// Hide the input area.
+			// Input status is secured by the game.
 			input.style.transform = "scale(0)";
 
-			// NOTE:常に画面上かつ画面外に存在させる
-			// input領域を表示したければここでデザインを調整する
+			// Always present on and off screen.
+			// If you want to display the input area, adjust the design here.
 			input.style.top = -50 + "vh";
 			input.style.left = 5 + "vw";
 			input.style.width = 90 + "vw";
