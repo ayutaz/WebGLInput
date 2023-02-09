@@ -21,7 +21,8 @@ input要素の位置がキーボードにより隠れてしまうとView全体�
 
 InputFieldが画面下部にあり、入力中の文字が視認できない場合はUnity側でInputFieldと連動した表示欄を作っておくか、WebGLInput.jslibを改造して位置やサイズを個別で調整すること。
 
-index.htmlのconfig.devicePixelRatio = 1;がコメントアウトされていること。これが有効になっているとAndroidでズームされてしまい、Viewサイズが崩れる。
+入力時にズームされてしまう場合、Headタグ内に以下を追加することで無効にできる  
+`<meta name="viewport" content="user-scalable=no">`
 
 ## iPadの対応について
 iPadはApplication.isMobilePlatformがfalseになる。また、WebGLの場合はApplication.platformがWebGLPlayerになるなどiPadの判定が正確に取れないため、強制的にモバイル判定をさせるフラグを別で追加している。
